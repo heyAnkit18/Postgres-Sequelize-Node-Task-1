@@ -27,6 +27,23 @@ app.get('/users', async (req, res) => {
     }
   });
 
+  //Get User by id
+  app.get('/users/:id',async(req,res)=>{
+    try{
+        const user=await User.findByPk(req.params.id);
+        if(user){
+            res.status(200).json(user);
+        } else{
+            res.status(404).json({error:"User not found"});
+        }
+    } catch (error){
+        res.status(500).json({error:error.message});
+    }
+  });
+
+  //Update User
+  
+
   // Sync the database
 sequelize.sync({ force: true }).then(() => {
     console.log('Database synced!');
