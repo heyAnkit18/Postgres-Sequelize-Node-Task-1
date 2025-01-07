@@ -5,9 +5,6 @@ const User = require('./models/user');
 const app = express();
 app.use(express.json());
 
-// Sync the database
-
-
 // Create a user
 app.post('/users', async (req, res) => { 
   try {
@@ -19,6 +16,18 @@ app.post('/users', async (req, res) => {
   }
 });
 
+
+//Get all users
+app.get('/users', async (req, res) => {
+    try {
+      const users = await User.findAll();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Sync the database
 sequelize.sync({ force: true }).then(() => {
     console.log('Database synced!');
   }).catch(error => {
@@ -26,7 +35,7 @@ sequelize.sync({ force: true }).then(() => {
   });
 
 // Start the server
-const PORT = 3000;
+const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
