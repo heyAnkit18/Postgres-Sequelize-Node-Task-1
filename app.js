@@ -16,7 +16,7 @@ app.post("/users", async (req, res) => {
   }
 });
 
-//Get all users
+//Get all the user
 app.get("/users", async (req, res) => {
   try {
     const users = await User.findAll();
@@ -69,5 +69,5 @@ sequelize
 // Start the server
 const PORT = 4000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server Running on the post ${PORT}`);
 });
