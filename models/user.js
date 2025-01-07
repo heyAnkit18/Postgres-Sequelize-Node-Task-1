@@ -13,6 +13,5 @@ const User=sequelize.define('User',{
     age:{
         type: DataTypes.INTEGER,
     },
-
 });
 module.exports=User;
